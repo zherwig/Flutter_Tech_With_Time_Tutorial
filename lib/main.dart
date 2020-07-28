@@ -28,6 +28,16 @@ class MyHomePage extends StatelessWidget {
     //widget (text), within widget (Appbar) within widget (Scaffold)
     return Scaffold(
         appBar: AppBar(title: Text("Hello world")),
-        body: Text("This is my first app"));
+        //making body a column and inside it a list of widgets
+        body: Column(
+          children: <Widget>[TestWidget(), TestWidget(), TestWidget()],
+        ));
+  }
+}
+
+class TestWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text("Hello world in column");
   }
 }
