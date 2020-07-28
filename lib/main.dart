@@ -41,11 +41,41 @@ class TextInputWidget extends StatefulWidget {
 
 //Responisble for state
 class _TextInputWidgetState extends State<TextInputWidget> {
+  //piece that grabs in input
+  final controller = TextEditingController();
+  String text = "";
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+
+  //function to update this.text
+  void changeText(text) {
+    // Clear if you type Hello World!
+    if (text == "Hello World!") {
+      controller.clear();
+      text = "";
+    }
+    // force page refresh
+    setState(() {
+      this.text = text;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-          prefixIcon: Icon(Icons.message), labelText: "Type A Message"),
-    );
+    return Column(children: <Widget>[
+      TextField(
+        //Here you link that controller
+        controller: this.controller,
+        decoration: InputDecoration(
+            prefixIcon: Icon(Icons.message), labelText: "Type A Message"),
+        onChanged: (text) => this.changeText(text),
+      ),
+      //Here you pull that text from the controller
+      Text(this.text)
+    ]);
   }
 }
