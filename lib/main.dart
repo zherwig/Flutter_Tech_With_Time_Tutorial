@@ -29,15 +29,23 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: Text("Hello world")),
         //making body a column and inside it a list of widgets
-        body: Column(
-          children: <Widget>[TestWidget(), TestWidget(), TestWidget()],
-        ));
+        body: TextInputWidget());
   }
 }
 
-class TestWidget extends StatelessWidget {
+// Main widget
+class TextInputWidget extends StatefulWidget {
+  @override
+  _TextInputWidgetState createState() => _TextInputWidgetState();
+}
+
+//Responisble for state
+class _TextInputWidgetState extends State<TextInputWidget> {
   @override
   Widget build(BuildContext context) {
-    return Text("Hello world in column");
+    return TextField(
+      decoration: InputDecoration(
+          prefixIcon: Icon(Icons.message), labelText: "Type A Message"),
+    );
   }
 }
